@@ -1,2 +1,4 @@
-# weby-final
-Final projekt do webů ve třeťáku.
+# Dokumentace
+## členové týmu:
+Štěpán Marek
+

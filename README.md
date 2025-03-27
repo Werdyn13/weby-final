@@ -14,3 +14,5 @@
 Názvy tříd, metod
 + anglicky
 + camel case
+
+Všechny materiály mám na discordu

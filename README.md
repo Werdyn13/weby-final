@@ -20,4 +20,4 @@
 + anglicky
 + kebab case
 
-Všechny materiály mám na discordu
+Všechny materiály mám na discordu a googlu drivu.

@@ -1,0 +1,12 @@
+[33m166f899[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mcode[m[33m, [m[1;31morigin/code[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mzachrana[m[33m)[m HEAD@{0}: reset: moving to 166f899
+[33m166f899[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mcode[m[33m, [m[1;31morigin/code[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mzachrana[m[33m)[m HEAD@{1}: checkout: moving from zachrana to code
+[33m166f899[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mcode[m[33m, [m[1;31morigin/code[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mzachrana[m[33m)[m HEAD@{2}: checkout: moving from code to zachrana
+[33m166f899[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mcode[m[33m, [m[1;31morigin/code[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mzachrana[m[33m)[m HEAD@{3}: Branch: renamed refs/heads/master to refs/heads/code
+[33m166f899[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mcode[m[33m, [m[1;31morigin/code[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mzachrana[m[33m)[m HEAD@{5}: commit: Hlavní stránka, základní rozhrání, zrušení layoutu a vytvoření unikátního navbaru. Nefunguje databáze, pro dostání se na welcome_page je potřeba se odhlásit.
+[33me56ba1e[m[33m ([m[1;31morigin/master[m[33m)[m HEAD@{6}: rebase (finish): returning to refs/heads/master
+[33me56ba1e[m[33m ([m[1;31morigin/master[m[33m)[m HEAD@{7}: rebase (start): checkout e56ba1e0525aadceff7fe97f6be64664b16e474f
+[33m66c156d[m HEAD@{8}: rebase (finish): returning to refs/heads/master
+[33m66c156d[m HEAD@{9}: rebase (start): checkout 66c156d04b133859501a34a377e7ce8b778f7e42
+[33m1e9b93b[m HEAD@{10}: revert: Revert "Hlavní stránka, základní rozhrání, zrušení layoutu a vytvoření unikátního navbaru. Nefunguje databáze, pro dostání se na welcome_page je potřeba se odhlásit."
+[33m66c156d[m HEAD@{11}: commit: Hlavní stránka, základní rozhrání, zrušení layoutu a vytvoření unikátního navbaru. Nefunguje databáze, pro dostání se na welcome_page je potřeba se odhlásit.
+[33me56ba1e[m[33m ([m[1;31morigin/master[m[33m)[m HEAD@{12}: commit (initial): Admin část, ne hotová verze, pouze ať je něco na githubu.

@@ -1,50 +1,40 @@
 <x-app-layout>
-    <div class="flex">
-        <!-- Sidebar -->
-        <aside class="w-64" aria-label="Sidebar">
-            <div class="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-gray-800">
-                <ul class="space-y-2">
-                    <li>
-                        <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                            <span class="ml-3">Kategorie</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </aside>
+    <div class="container mx-auto py-12">
+        <h2 class="text-3xl font-bold text-center text-gray-800 dark:text-white mb-10">Produkty</h2>
 
-        <!-- Main Content -->
-        <div class="flex-1">
-            <div class="flex items-center justify-center p-4">
-                <button id="dropdownDefault" data-dropdown-toggle="dropdown"
-                    class="text-black bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                    type="button">
-                    Filter by category
-                    <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </button>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-items-center">
+            @foreach ($produkty as $produkt)
+                <div class="w-full max-w-xs bg-white border border-gray-200 rounded-2xl shadow-lg dark:bg-gray-800 dark:border-gray-700 transition hover:scale-105 hover:shadow-xl duration-200">
+                    <a href="#">
+                        <img class="rounded-t-2xl w-full h-48 object-cover" src="https://via.placeholder.com/300x200" alt="Produkt Image" />
+                    </a>
+                    <div class="p-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                                {{ $produkt->name }}
+                            </h5>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                                Nové
+                            </span>
+                        </div>
 
-                <!-- Dropdown menu -->
-                <div id="dropdown" class="z-10 hidden w-56 p-3 bg-white rounded-lg shadow dark:bg-gray-700">
-                    <h6 class="mb-3 text-sm font-medium text-gray-900 dark:text-white">
-                        Category
-                    </h6>
-                    <ul class="space-y-2 text-sm" aria-labelledby="dropdownDefault">
-                        @foreach($categories as $category)
-                            <li class="flex items-center">
-                                <input type="checkbox" value="{{ $category->name }}"
-                                    class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            {{ $produkt->description ?? 'Popis produktu není k dispozici.' }}
+                        </p>
 
-                                <label class="ml-2 text-sm font-medium text-gray-900 dark:text-black-100">
-                                    {{ $category->name }}
-                                </label>
-                            </li>
-                        @endforeach
-                    </ul>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold text-blue-600">{{ number_format($produkt->cena, 0, ',', ' ') }} Kč</span>
+                            <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                Detail
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            @endforeach
+        </div>
+
+        <div class="mt-12 flex justify-center">
+            {{ $produkty->links('pagination::custom') }}
         </div>
     </div>
 </x-app-layout>

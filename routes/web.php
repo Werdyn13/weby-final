@@ -2,13 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomepageController;
-use App\Http\Controllers\ProduktController;
+use App\Http\Controllers\KategorieController;
 
 Route::view('/', 'welcome');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::get('dashboard', [KategorieController::class, 'index'])->name('dashboard');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
@@ -20,6 +18,8 @@ Route::get('/shop', function () {
     return view('shop');
 })->name('shop');
 
-Route::get('/produkty', [ProduktController::class, 'index'])->name('produkty.index');
+Route::get('produkt/{id}', [App\Http\Controllers\ProduktController::class, 'show'])->name('produkt.show');
+Route::get('kategorie/{idkategorie}', [App\Http\Controllers\KategorieController::class, 'showProdukty'])->name('kategorie.produkty');
+Route::redirect('/home', '/dashboard');
 
 require __DIR__.'/auth.php';

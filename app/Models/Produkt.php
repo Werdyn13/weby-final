@@ -10,7 +10,9 @@ class Produkt extends Model
 
     protected $primaryKey = 'idprodukt';
 
-    protected $fillable = ['nazev'];
+    protected $fillable = ['nazev', 'popis', 'cena', 'obrazek', 'cislo_kategorie'];
+
+    public $timestamps = false;
 
     public function getNameAttribute()
     {

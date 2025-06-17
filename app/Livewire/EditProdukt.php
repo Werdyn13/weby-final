@@ -40,9 +40,8 @@ class EditProdukt extends Component
             'cislo_kategorie' => $this->cislo_kategorie,
         ]);
 
-        session()->flash('message', 'Produkt updated successfully!');
-
-        $this->emit('produktUpdated');
+        session()->flash('success', 'Produkt byl úspěšně aktualizován.');
+        return redirect()->route('homepage');
     }
 
     public function render()

@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\KategorieController;
 use App\Models\Kategorie;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\ShopController;
+use Illuminate\Support\Facades\Auth;
 
 Route::view('/', 'welcome');
 
@@ -14,9 +17,7 @@ Route::view('profile', 'profile')
 
 Route::get('homepage', [HomepageController::class, 'index'])->name('homepage');
 
-Route::get('/shop', function () {
-    return view('shop');
-})->name('shop');
+Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 
 Route::get('produkt/{id}', [App\Http\Controllers\ProduktController::class, 'show'])->name('produkt.show');
 Route::get('produkt/{id}/edit', [App\Http\Controllers\ProduktController::class, 'edit'])->name('produkt.edit');
@@ -32,5 +33,14 @@ Route::get('kategorie', function () {
     return view('kategorie', compact('kategorie', 'allKategorie'));
 })->name('kategorie');
 Route::get('/kategorie/details/{id}', [KategorieController::class, 'show'])->name('kategorie.show');
+Route::get('/cart/add/{id}', [ShopController::class, 'add'])->name('cart.add');
+Route::get('/cart', [ShopController::class, 'index'])->name('cart.index');
+Route::delete('/cart/remove/{id}', [ShopController::class, 'remove'])->name('cart.remove');
+Route::post('/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect('/');
+})->name('logout');
 
 require __DIR__.'/auth.php';

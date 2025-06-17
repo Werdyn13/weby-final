@@ -16,6 +16,11 @@ new class extends Component
     }
 }; ?>
 
+<head>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+
 <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,20 +62,24 @@ new class extends Component
                         </x-dropdown-link>
 
                         <!-- Authentication -->
-                        <button wire:click="logout" class="w-full text-start">
-                            <x-dropdown-link>
+                        <form method="POST" action="{{ route('logout') }}" class="w-full">
+                            @csrf
+                            <x-dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
-                        </button>
+                        </form>
                     </x-slot>
                 </x-dropdown>
 
                 <a href="{{ route('shop') }}" class="ms-4 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h18l-2 10H5L3 3zm0 0l4 4m-4-4l4-4" />
-                    </svg>
-                    <span class="ms-2">Shop</span>
+                    <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                    <span class="ms-2">Košík</span>
                 </a>
+
+                <script>
+                    lucide.createIcons();
+                </script>
+
             </div>
 
             <!-- Hamburger -->
@@ -88,8 +97,17 @@ new class extends Component
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('homepage')" :active="request()->routeIs('homepage')" wire:navigate>
+                {{ __('Homepage') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('kategorie')" :active="request()->routeIs('kategorie')" wire:navigate>
+                {{ __('Kategorie') }}
+            </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
-                {{ __('Dashboard') }}
+                {{ __('O nás') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('shop')" :active="request()->routeIs('shop')" wire:navigate>
+                {{ __('Košík') }}
             </x-responsive-nav-link>
         </div>
 
@@ -106,11 +124,12 @@ new class extends Component
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
-                <button wire:click="logout" class="w-full text-start">
-                    <x-responsive-nav-link>
+                <form method="POST" action="{{ route('logout') }}" class="w-full">
+                    @csrf
+                    <x-dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
                         {{ __('Log Out') }}
-                    </x-responsive-nav-link>
-                </button>
+                    </x-dropdown-link>
+                </form>
             </div>
         </div>
     </div>

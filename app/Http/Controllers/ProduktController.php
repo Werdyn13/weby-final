@@ -43,13 +43,26 @@ class ProduktController extends Controller
         ]);
 
         $produkt = Produkt::findOrFail($id);
+
+        if (!$produkt) {
+            return redirect()->route('homepage')->with('error', 'Produkt not found.');
+        }
+
         $produkt->update([
-            'name' => $validatedData['nazev'],
-            'description' => $validatedData['popis'],
+            'nazev' => $validatedData['nazev'],
+            'popis' => $validatedData['popis'],
             'cena' => $validatedData['cena'],
             'cislo_kategorie' => $validatedData['cislo_kategorie'],
         ]);
 
         return redirect()->route('homepage')->with('success', 'Produkt updated successfully!');
+    }
+
+    public function destroy($id)
+    {
+        $produkt = Produkt::findOrFail($id);
+        $produkt->delete();
+
+        return redirect()->route('homepage')->with('success', 'Produkt byl úspěšně odstraněn.');
     }
 }

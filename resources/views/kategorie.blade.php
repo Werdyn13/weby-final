@@ -2,10 +2,11 @@
     <div class="container mx-auto py-12">
         <h2 class="text-3xl font-bold text-center text-gray-800 dark:text-white mb-10">Kategorie</h2>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-items-center">
+        <div class="flex-justify-center gap-8 place-items-center">
             @foreach ($kategorie as $kategorieItem)
-                <div class="w-full max-w-xs bg-white border border-gray-200 rounded-2xl shadow-lg dark:bg-gray-800 dark:border-gray-700 transition hover:scale-105 hover:shadow-xl duration-200"
-                     onclick="window.location.href='{{ route('kategorie.show', $kategorieItem->idkategorie) }}'">
+                <div
+                    class="w-full max-w-xs bg-white border border-gray-200 rounded-2xl shadow-lg dark:bg-gray-800 dark:border-gray-700 transition hover:scale-105 hover:shadow-xl duration-200 cursor-pointer"
+                    onclick="window.location.href='{{ route('kategorie.show', $kategorieItem->idkategorie) }}'">
                     <a href="#">
                         <img class="rounded-t-2xl w-full h-48 object-cover" src="https://via.placeholder.com/300x200" alt="Kategorie Image" />
                     </a>
@@ -15,35 +16,15 @@
                                 {{ $kategorieItem->nazev }}
                             </h5>
                         </div>
-
                         <p class="text-gray-600 dark:text-gray-300 mb-4">
                             {{ $kategorieItem->description ?? 'Popis kategorie není k dispozici.' }}
                         </p>
-
-                        @if (auth()->user() && auth()->user()->isAdmin())
-                            <div class="flex justify-between items-center mt-4">
-                                <a href="#" class="text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-yellow-400 dark:hover:bg-yellow-500 dark:focus:ring-yellow-600"
-                                   onclick="event.preventDefault(); showEditModal({{ $kategorieItem->idkategorie }})">
-                                    Edit
-                                </a>
-                                <form action="#" method="POST" onsubmit="return confirm('Opravdu chcete smazat tuto kategorii?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-red-400 dark:hover:bg-red-500 dark:focus:ring-red-600">
-                                        Delete
-                                    </button>
-                                </form>
-                            </div>
-                        @endif
                     </div>
                 </div>
             @endforeach
         </div>
-
-        <div class="mt-12 flex justify-center">
-            {{ $kategorie->links('pagination::custom') }}
-        </div>
     </div>
+
 
     {{-- Livewire komponenta pro editaci kategorie --}}
     <livewire:edit-kategorie />

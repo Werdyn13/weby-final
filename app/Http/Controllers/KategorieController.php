@@ -21,4 +21,12 @@ class KategorieController extends Controller
         $produkt = $idprodukt ? Produkt::find($idprodukt) : null;
         return view('produkty.produktyKategorie', compact('kategorie', 'produkty', 'produkt'));
     }
+
+    public function show($id)
+    {
+        $kategorie = Kategorie::findOrFail($id);
+        $produkty = Produkt::where('cislo_kategorie', $id)->get();
+        $subcategories = Kategorie::where('parent', $id)->get();
+        return view('kategorie.show', compact('kategorie', 'produkty', 'subcategories'));
+    }
 }

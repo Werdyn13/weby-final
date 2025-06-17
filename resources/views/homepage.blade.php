@@ -28,6 +28,21 @@
                                 Detail
                             </a>
                         </div>
+
+                        @if (auth()->user() && auth()->user()->isAdmin())
+                            <div class="flex justify-between items-center mt-4">
+                                <a href="{{ route('produkt.edit', ['id' => $produkt->idprodukt]) }}" class="text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-yellow-400 dark:hover:bg-yellow-500 dark:focus:ring-yellow-600">
+                                    Edit
+                                </a>
+                                <form action="{{ route('produkt.destroy', ['id' => $produkt->idprodukt]) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-red-400 dark:hover:bg-red-500 dark:focus:ring-red-600">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                        @endif
                     </div>
                 </div>
             @endforeach
@@ -37,4 +52,19 @@
             {{ $produkty->links('pagination::custom') }}
         </div>
     </div>
+
+    @push('modals')
+        <div id="editModal" class="fixed inset-0 z-50 hidden bg-gray-800 bg-opacity-75 flex items-center justify-center">
+            <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+                <h2 class="text-xl font-bold mb-4">Edit Produkt</h2>
+                <livewire:edit-produkt :produkt="$produkt" />
+            </div>
+        </div>
+    @endpush
+
+    <script>
+        function showEditModal() {
+            document.getElementById('editModal').classList.remove('hidden');
+        }
+    </script>
 </x-app-layout>
